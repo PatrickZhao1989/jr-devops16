@@ -1,22 +1,25 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 function App() {
   const [message, setMessage] = useState('Loading...');
 
+  const backendBaseUrl = import.meta.env.VITE_BACKEND_URL
+  const helloworldEndpoint = `${backendBaseUrl}/helloworld/helloworld`;
+
   useEffect(() => {
-    fetch('/api/HelloWorld/helloworld')
+    fetch(helloworldEndpoint)
       .then((res) => res.text())
       .then((data) => setMessage(data))
       .catch((err) => {
-        console.error('Error fetching hello world:', err);
+        console.error('Error fetching:', err);
         setMessage('Failed to load message');
       });
   }, []);
 
   return (
     <div style={{ padding: 40 }}>
-      <h1>🚀 React + Vite Frontend</h1>
-      <p>Backend says: <strong>{message}</strong></p>
+      <h1>🌐 Frontend Talking to Backend</h1>
+      <p><strong>{message}</strong></p>
     </div>
   );
 }
