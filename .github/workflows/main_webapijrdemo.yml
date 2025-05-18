@@ -27,13 +27,13 @@ jobs:
         run: dotnet build --configuration Release
 
       - name: dotnet publish
-        run: dotnet publish -c Release -o ./backend
+        run: dotnet publish ./backend -c Release -o ./app
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ./backend
+          path: ./app
 
   deploy:
     runs-on: ubuntu-latest
