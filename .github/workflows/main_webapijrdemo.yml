@@ -24,7 +24,7 @@ jobs:
           dotnet-version: '9.x'
 
       - name: Build with dotnet
-        run: dotnet build --configuration Release
+        run: dotnet build ./backend --configuration Release
 
       - name: dotnet publish
         run: dotnet publish ./backend -c Release -o ./app
